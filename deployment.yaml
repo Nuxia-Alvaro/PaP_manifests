@@ -12,6 +12,8 @@ spec:
       labels:
         app: mi-web-html
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
       - name: mi-web-html
         image: core.harbor.domain/mi-webapp/mi-webapp:1.0 # Nombre de la imagen de Docker
