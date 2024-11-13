@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mi-web-html
-        image: mi-web-html # Nombre de la imagen de Docker
+        image: core.harbor.domain/mi-webapp/mi-webapp:1.0 # Nombre de la imagen de Docker
         ports:
         - containerPort: 80 # Puerto que expone el contenedor
 
