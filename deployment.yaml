@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-preprod-deployment
+spec:
+  replicas: 1 # Número de réplicas del pod
+  selector:
+    matchLabels:
+      app: mi-web-html
+  template:
+    metadata:
+      labels:
+        app: mi-web-html
+    spec:
+      containers:
+      - name: mi-web-html
+        image: mi-web-html # Nombre de la imagen de Docker
+        ports:
+        - containerPort: 80 # Puerto que expone el contenedor
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-preprod-service
+spec:
+  selector:
+    app: mi-web-html
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
