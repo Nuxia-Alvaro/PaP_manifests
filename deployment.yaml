@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dev-preprod
-        image: localhost:5000/mi-webapp:1.0  # Nueva versión de la imagen
+        image: nginx:latest  # Nueva versión de la imagen
         ports:
         - containerPort: 8080
   strategy:
