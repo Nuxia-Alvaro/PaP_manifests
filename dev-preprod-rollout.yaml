@@ -19,6 +19,7 @@ spec:
         ports:
         - containerPort: 8080
   strategy:
+    scaleDownDelaySeconds: 10
     canary:
       steps:
       - setWeight: 20 # 20% del tráfico a la nueva versión
