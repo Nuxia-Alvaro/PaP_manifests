@@ -6,16 +6,16 @@ spec:
   replicas: 1 # Número de réplicas del pod
   selector:
     matchLabels:
-      app: mi-web-html
+      app: dev-preprod
   template:
     metadata:
       labels:
-        app: mi-web-html
+        app: dev-preprod
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-      - name: mi-web-html
+      - name: dev-preprod
         image: core.harbor.domain/mi-webapp/mi-webapp:1.0 # Nombre de la imagen de Docker
         ports:
         - containerPort: 80 # Puerto que expone el contenedor
@@ -27,7 +27,7 @@ metadata:
   name: dev-preprod-service
 spec:
   selector:
-    app: mi-web-html
+    app: dev-preprod
   ports:
   - protocol: TCP
     port: 80
