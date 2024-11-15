@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: dev-preprod-rollout-canary
+  namespace: dev-preprod
+spec:
+  replicas: 3 # Número total de réplicas deseadas
+  selector:
+    matchLabels:
+      app: dev-preprod
+  template:
+    metadata:
+      labels:
+        app: dev-preprod
+    spec:
+      containers:
+      - name: dev-preprod
+        image: localhost:5000/mi-webapp:1.0  # Nueva versión de la imagen
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20 # 20% del tráfico a la nueva versión
+      - pause: { duration: "10m" } # Pausa de 10 minutos
+      - setWeight: 50 # 50% del tráfico a la nueva versión
+      - pause: { duration: "15m" } # Pausa de 15 minutos
+      - setWeight: 100 # 100% del tráfico a la nueva versión
