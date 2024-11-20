@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dev-preprod
-        image: docker.io/library/nginx:latest # Nueva versión de la imagen
+        image: docker.io/library/hello-world:latest # Nueva versión de la imagen
         ports:
         - containerPort: 8080
   strategy:
