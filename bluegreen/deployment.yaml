@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: dev-preprod-rollout-canary
+  namespace: dev-preprod
+spec:
+  replicas: 3 # Número total de réplicas deseadas
+  selector:
+    matchLabels:
+      app: dev-preprod
+  template:
+    metadata:
+      labels:
+        app: dev-preprod
+    spec:
+      containers:
+      - name: dev-preprod
+        image: core.harbor.domain/mi-webapp/mi-webapp:latest # Nueva versión de la imagen
+        ports:
+        - containerPort: 8080
+  strategy:
+    blueGreen:
+      activeService: active-dev-preprod-service # Servicio para tráfico de producción
+      previewService: preview-dev-preprod-service  # Servicio para la nueva versión
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: active-dev-preprod-service
+  namespace: dev-preprod
+spec:
+  selector:
+    app: dev-preprod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: preview-dev-preprod-service
+  namespace: dev-preprod
+spec:
+  selector:
+    app: {}
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
