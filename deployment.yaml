@@ -10,9 +10,13 @@ spec:
       app: dev-preprod
   template:
     metadata:
+      annotations:
+        image.pullSecrets[0].skipTLSVerify: "true" 
       labels:
         app: dev-preprod
     spec:
+      imagePullSecrets:
+      - name: harbor-secret 
       containers:
       - name: dev-preprod
         image: core.harbor.domain/mi-webapp/mi-webapp:latest # Nueva versión de la imagen
