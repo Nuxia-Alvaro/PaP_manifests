@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dev-preprod
-        image: hello-world # Nueva versión de la imagen
+        image: docker.io/images/hello-world:latest # Nueva versión de la imagen
         ports:
         - containerPort: 8080
   strategy:
