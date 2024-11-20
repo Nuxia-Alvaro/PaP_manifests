@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: v1
+kind: Deployment
 metadata:
   name: dev-preprod-rollout-canary
   namespace: dev-preprod
@@ -18,14 +18,6 @@ spec:
         image: docker.io/library/hello-world:latest # Nueva versión de la imagen
         ports:
         - containerPort: 8080
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20 # 20% del tráfico a la nueva versión
-      - pause: { duration: "10s" } # Pausa de 10 minutos
-      - setWeight: 50 # 50% del tráfico a la nueva versión
-      - pause: { duration: "15s" } # Pausa de 15 minutos
-      - setWeight: 100 # 100% del tráfico a la nueva versión
 ---
 apiVersion: v1
 kind: Service
