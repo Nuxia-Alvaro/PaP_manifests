@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dev-preprod
-        image: nginx # Nueva versión de la imagen
+        image: hello-world # Nueva versión de la imagen
         ports:
         - containerPort: 8080
   strategy:
