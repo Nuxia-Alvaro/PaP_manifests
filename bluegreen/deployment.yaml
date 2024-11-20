@@ -22,6 +22,7 @@ spec:
     blueGreen:
       activeService: active-dev-preprod-service # Servicio para tráfico de producción
       previewService: preview-dev-preprod-service  # Servicio para la nueva versión
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
