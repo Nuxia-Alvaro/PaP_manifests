@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dev-preprod
-        image: busybox # Nueva versión de la imagen
+        image: docker.io/library/busybox # Nueva versión de la imagen
         ports:
         - containerPort: 8080
   strategy:
