@@ -43,8 +43,7 @@ metadata:
   name: preview-dev-preprod-service
   namespace: dev-preprod-bluegreen
 spec:
-  selector:
-    app: {}
+  selector: {}
   ports:
   - protocol: TCP
     port: 80
