@@ -22,6 +22,14 @@ spec:
         image: core.harbor.domain/mi-webapp/mi-webapp:latest # Nueva versión de la imagen
         ports:
         - containerPort: 8080
+        volumeMounts:
+          - name: harbor-ca
+            mountPath: /etc/ssl/certs/harbor-ca.crt
+            subPath: harbor-ca.crt
+      volumes:
+        - name: harbor-ca
+          configMap:
+            name: harbor-ca
   strategy:
     canary:
       steps:
