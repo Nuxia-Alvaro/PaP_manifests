@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       annotations:
-        image.pullSecrets[0].skipTLSVerify: "true" 
+        rollouts.argoproj.io/skip-tls-verify: "true"
       labels:
         app: dev-preprod
     spec:
